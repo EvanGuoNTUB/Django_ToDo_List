@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{#{% block title %}#}
+{#show#}
+{#{% endblock %}#}
+
+{% block body %}
+
+    <h1>Posts</h1>
+    {# 註解 #}
+    <div>{{todo.id}}</div>
+    <h5>{{todo.title}}</h5>
+    <p>{{todo.content}}</p>
+
+    {{ todo.title }}-{{ todo.content }} <br>
+    <hr>
+        <a class="btn btn-outline-primary " href="{% url 'todo:edit' todo.id %}">Edit</a>
+        <a class="btn btn-outline-primary " href="{% url 'todo:delete' todo.id %}">Delete</a>
+        <a class="btn btn-outline-primary " href="{% url 'todo:index' %}">Back To List</a>
+
+{% endblock %}

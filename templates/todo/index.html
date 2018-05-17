@@ -1,0 +1,25 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+    <div class="row">
+
+    <div class="col">
+     <a class="btn btn-outline-primary btn-sm float-right mt-3" href="{% url 'todo:new' %}">New Todo</a>
+    <h1> TODO list</h1>
+
+
+     <hr>
+
+    <div class="list-group">
+       {% for todo in todos %}
+        <a href="{% url 'todo:show' %}" class="list-group-item list-group-item-action">{{ todo.title }}</a>
+           {% empty %}
+           <a href="{% url 'todo:show' %}" class="list-group-item list-group-item-action disabled">No Todo!!!</a>
+       {% endfor %}
+    </div>
+    </div>
+    </div>
+
+
+{% endblock %}
