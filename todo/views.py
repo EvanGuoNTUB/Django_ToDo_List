@@ -1,7 +1,7 @@
 from django.shortcuts import render,get_object_or_404,redirect
 
 from .models import Todo
-from .forms import TodoModelForm
+from .forms import TodoModelForm,DeleteConfirmForm
 
 
 def index(request):
@@ -10,9 +10,9 @@ def index(request):
 
 def show(request,pk):
     #post = Post.objects.get(pk=pk)
-    todos =  get_object_or_404(Todo,pk=pk)
+    todo =  get_object_or_404(Todo,pk=pk)
     return render(request,'todo/show.html',{
-        'todos': todos
+        'todo': todo
     })
 
 
@@ -35,6 +35,12 @@ def edit(request,pk):
     })
 
 def delete(request,pk): #非正統
-    todos = get_object_or_404(Todo, pk=pk)
-    todos.delete()
-    return redirect('todo:index')
+
+    form = DeleteConfirmForm(request.POST or None)
+    if form.is_valid() and form.cleaned_data['check']:
+        todos = get_object_or_404(Todo, pk=pk)
+        todos.delete()
+        return redirect('todo:index')
+
+
+    return render(request,'todo/delete.html',{'form':form})

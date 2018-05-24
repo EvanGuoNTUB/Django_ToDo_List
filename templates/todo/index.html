@@ -1,5 +1,6 @@
 {% extends 'layout.html' %}
 
+{% load bootstrap4 %}
 {% block body %}
 
     <div class="row">
@@ -13,9 +14,9 @@
 
     <div class="list-group">
        {% for todo in todos %}
-        <a href="{% url 'todo:show' %}" class="list-group-item list-group-item-action">{{ todo.title }}</a>
+            <a href="{% url 'todo:show' todo.id %}" class="list-group-item list-group-item-action">{{ todo.title }}</a>
            {% empty %}
-           <a href="{% url 'todo:show' %}" class="list-group-item list-group-item-action disabled">No Todo!!!</a>
+           <a href="#" class="list-group-item list-group-item-action disabled">No Todo!!!</a>
        {% endfor %}
     </div>
     </div>

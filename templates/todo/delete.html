@@ -3,13 +3,14 @@
 {% load bootstrap4 %}
 
 {% block title %}
-<title>Edit Todo</title>
+<title>Delete Todo</title>
 {% endblock %}
+
 
 {% block body %}
     <div class="row">
         <div class="col">
-        <h1>Edit Todo</h1>
+        <h1>Delete Todo</h1>
             <form action="" method="post" class="form">
                 {% csrf_token %}
                 {% bootstrap_form form %}
