@@ -9,14 +9,20 @@
 
     <h1>Posts</h1>
     {# 註解 #}
-    <div>{{todo.id}}</div>
-    <h5>{{todo.title}}</h5>
-    <p>{{todo.content}}</p>
+    <div>編號:{{todo.id}}</div>
+    <h5>主題:{{todo.title}}</h5>
+    <p>Tag:{{todo.tags.all | join:', ' }}</p>
+    <p>內容:{{todo.content}}</p>
 
     {{ todo.title }}-{{ todo.content }} <br>
     <hr>
+    {% if user.is_authenticated %}
         <a class="btn btn-outline-primary " href="{% url 'todo:edit' todo.id %}">Edit</a>
         <a class="btn btn-outline-primary " href="{% url 'todo:delete' todo.id %}">Delete</a>
         <a class="btn btn-outline-primary " href="{% url 'todo:index' %}">Back To List</a>
+    {% else %}
+        <a class="btn btn-outline-primary " href="{% url 'todo:index' %}">Back To List</a>
+    {% endif %}
+
 
 {% endblock %}

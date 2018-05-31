@@ -2,6 +2,7 @@ from django.shortcuts import render,get_object_or_404,redirect
 
 from .models import Todo
 from .forms import TodoModelForm,DeleteConfirmForm
+from django.contrib.auth.decorators import login_required
 
 
 def index(request):
@@ -15,7 +16,7 @@ def show(request,pk):
         'todo': todo
     })
 
-
+@login_required
 def new(request):
     form = TodoModelForm(request.POST or None)
     if form.is_valid():
@@ -24,6 +25,7 @@ def new(request):
 
     return render(request, 'todo/new.html', {'form': form})
 
+@login_required
 def edit(request,pk):
     todos = get_object_or_404(Todo, pk=pk)
     form = TodoModelForm(request.POST or None)
@@ -34,6 +36,7 @@ def edit(request,pk):
         'form': form
     })
 
+@login_required
 def delete(request,pk): #非正統
 
     form = DeleteConfirmForm(request.POST or None)

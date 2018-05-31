@@ -4,14 +4,14 @@
 {% block body %}
 
     <div class="row">
-
     <div class="col">
-     <a class="btn btn-outline-primary btn-sm float-right mt-3" href="{% url 'todo:new' %}">New Todo</a>
+    {% if user.is_authenticated %}
+        <a class="btn btn-outline-primary btn-sm float-right mt-3" href="{% url 'todo:new' %}">New Todo</a>
+    {% endif %}
+
+
     <h1> TODO list</h1>
-
-
      <hr>
-
     <div class="list-group">
        {% for todo in todos %}
             <a href="{% url 'todo:show' todo.id %}" class="list-group-item list-group-item-action">{{ todo.title }}</a>

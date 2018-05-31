@@ -3,24 +3,22 @@
 {% load bootstrap4 %}
 
 {% block title %}
-<title>Delete Todo</title>
+<title>Login</title>
 {% endblock %}
 
 
 {% block body %}
     <div class="row">
         <div class="col">
-        <h1>Delete Todo</h1>
+        <h1>Register</h1>
             <form action="" method="post" class="form">
                 {% csrf_token %}
                 {% bootstrap_form form %}
+                <a href="{% url 'login' %}">Already have a account?</a>
                 {% buttons %}
-                    <button type="submit" class="btn btn-outline-primary">
-                        確定
+                    <button type="submit" class="btn btn-primary">
+                        註冊
                     </button>
-                    <a href="{% url 'todo:index' %}" type="cancel" class="btn btn-outline-primary">
-                        取消
-                    </a>
                 {% endbuttons %}
             </form>
         </div>
