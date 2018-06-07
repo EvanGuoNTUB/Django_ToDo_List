@@ -10,6 +10,8 @@ deactivate(離開環境)
 裝django+ipython
 pip install django ipython
 pip install django(安裝python套件)
+pip freeze > ./requirements.txt(寫入已安裝套件)
+pip install -r requirements.txt (安裝已安裝套件)
 
 
 django-admin.py startproject core . (建新的專案)
