@@ -20,7 +20,9 @@ def show(request,pk):
 def new(request):
     form = TodoModelForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        todo = form.save(commit=False)
+        todo.creator = request.user
+        todo.save()
         return redirect('todo:index')
 
     return render(request, 'todo/new.html', {'form': form})
@@ -30,7 +32,9 @@ def edit(request,pk):
     todos = get_object_or_404(Todo, pk=pk)
     form = TodoModelForm(request.POST or None)
     if form.is_valid():
-        form.save()
+        todo = form.save(commit=False)
+        todo.creator = request.user
+        todo.save()
         return redirect('todo:index')
     return render(request, 'todo/edit.html', {
         'form': form

@@ -9,4 +9,4 @@ def register(request):
         login(request,user)
         return redirect('todo:index')
 
-    return render(request,'user/register.html',{'form':form})
+    return render(request,'users/register.html',{'form':form})
