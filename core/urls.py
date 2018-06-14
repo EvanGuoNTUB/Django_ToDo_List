@@ -17,8 +17,13 @@ from django.contrib import admin
 from django.urls import path, include
 from django.contrib.auth import views as  auth_views
 from users.views import register
+from django.conf import settings
+from django.conf.urls.static import static
+
+from .views import root
 
 urlpatterns = [
+    path('', root,name='root'),
     path('admin/', admin.site.urls),
     path('todo/', include('todo.urls')),
     path('api/', include('api.urls')),
@@ -40,4 +45,4 @@ urlpatterns = [
         post_reset_login=True,
         success_url='/todo/'
     ),name='password_reset_confirm'),
-]
+]+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
